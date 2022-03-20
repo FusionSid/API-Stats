@@ -3,22 +3,26 @@ import inspect
 import functools
 
 class Stats:
-    file_name = "stats.json"
+    """
+    The stats class
+    This contains one classmethod: The update_stats decorator
+    """
+    file_name: str = "stats.json"
 
     @classmethod
-    def update_stats(cls, *args, **kwargs):
-        global name
-        try:
-            name = kwargs["name"]
-        except KeyError:
-            name = None
-
-
+    def update_stats(cls, *args, **kw_args):
         def wrapper(func):
             @functools.wraps(func)
             async def wrapped(*args, **kwargs):
-                global name
-                if name is None:
+                try:
+                    name = kw_args["name"]
+                except KeyError:
+                    name = None
+
+                try:
+                    if name is None:
+                        name = str(func.__name__)
+                except UnboundLocalError:
                     name = str(func.__name__)
 
                 try:

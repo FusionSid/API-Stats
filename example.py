@@ -7,7 +7,6 @@ app = FastAPI()
 Stats.file_name = "json_files/stats.json"
 
 # you can also make a variable with the class and use that instead of @Stats.update_stats
-
 update = Stats.update_stats
 
 @app.get("/name")
