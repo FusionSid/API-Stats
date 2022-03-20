@@ -12,7 +12,7 @@ pip install fast-api-stats
 ## Example Usage: 
 ```py
 from fastapi import FastAPI
-from apistats import Stats
+from fastapistats import Stats
 
 app = FastAPI()
 
